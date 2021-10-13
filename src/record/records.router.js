@@ -29,7 +29,7 @@ function give(req, res) {
 // При этом в параметрах запроса пользователь может указать количество записей, которые ему необходимо получить из буфера.
 function recive(req, res) {
   try {
-    const standartCount = Number(process.env.RECORDS_COUNT) || 10;
+    const standartCount = (Number(process.env.RECORDS_COUNT) > 0) ? Number(process.env.RECORDS_COUNT) : 10;
     const count = strToCount(req.query.count, standartCount);
 
     const records = recordsService.getRecords(count);
